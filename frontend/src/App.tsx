@@ -1,8 +1,8 @@
 import './App.css';
 import 'tailwindcss';
-import Home from './homePage';
 import { useEffect } from 'react';
 import { getZone } from './lib/common/zone.ts';
+import Home from './components/Home.tsx';
 
 function App() {
 

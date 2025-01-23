@@ -1,10 +1,10 @@
 import { useState } from "react"
-import Navbar from "./components/NavBar"
-import Map from "./components/Map"
-import Chat from "./components/Chat"
+import Navbar from "./NavBar.tsx"
+import Map from "./Map.tsx"
+import Chat from "./Chat.tsx"
 
 export default function Home() {
-    const [user, setUser] = useState({ name: "John Doe" })
+    const [user] = useState({ name: "John Doe" })
 
   return (
     <div className="flex flex-col h-screen">

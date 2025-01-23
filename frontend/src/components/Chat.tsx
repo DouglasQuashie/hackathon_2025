@@ -1,7 +1,7 @@
 import socket from '../lib/socket';
 import { WsEvent } from '../lib/common/WsEvent.ts';
 import type { Chat } from '../lib/chat/interfaces/Chat.ts';
-import { Navigate, useParams } from 'react-router';
+import { Navigate } from 'react-router';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { getChatByZone } from '../services/api.tsx';
 import { v4 } from 'uuid';
