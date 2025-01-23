@@ -1,16 +1,18 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import socket from './lib/socket.ts';
 import { WsEvent } from './lib/common/WsEvent.ts';
+import { useParams } from 'react-router';
 
 type HomeProps = {}
 
 const ChatPage:FC<HomeProps> = () => {
-
+	const params = useParams();
+	const zone = params.zone;
 	const [message, setMessage] = useState<string>("")
 	const [list, setList] = useState<any[]>([])
 
 	const sendMessage = () => {
-		socket.emit(WsEvent.CHAT_SEND, { content: message, username: "test", zone: "1" })
+		socket.emit(WsEvent.CHAT_SEND, { content: message, username: "test", zone })
 		console.log("WsEvent.CHAT_SEND !!!!!");
 
 		setList((prevState) => [...prevState, message])
@@ -25,8 +27,6 @@ const ChatPage:FC<HomeProps> = () => {
 			socket.off(WsEvent.SEND_CHAT)
 		}
 	}, [socket]);
-
-
 
 	return (
 		<div>
