@@ -1,5 +1,11 @@
 import { AddChatDto } from '@/chat/interfaces/dto/AddChatDto';
+import { Chat } from '@/common/entities/Chat';
 
 export interface IChatRepositoryAddChat {
 	addChat(chat: AddChatDto): Promise<void>
 }
+
+export interface IChatRepositoryGetChats {
+	getChats(zone: string): Promise<Chat[]>
+}
+

@@ -34,7 +34,7 @@ export const CheckBodyMiddleware = async (body: unknown, next: NextFunction, sch
 				const path = err.path.join(".") || "error";
 				formattedErrors[path] = err.message;
 			});
-			throw new Error("Not well formated body", { cause: { status: 500, data: formattedErrors } })
+			throw new Error("Not well formated body", { cause: { status: 400, data: formattedErrors } })
 		}
 		throw new Error("Internal Server Error", { cause: 500 })
 	}

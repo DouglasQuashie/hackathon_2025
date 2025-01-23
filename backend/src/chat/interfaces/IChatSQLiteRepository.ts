@@ -1,4 +1,4 @@
-import { IChatRepositoryAddChat } from '@/chat/interfaces/IChatRepository';
+import { IChatRepositoryAddChat, IChatRepositoryGetChats } from '@/chat/interfaces/IChatRepository';
 
-export interface IChatSQLiteRepository extends IChatRepositoryAddChat {
+export interface IChatSQLiteRepository extends IChatRepositoryAddChat, IChatRepositoryGetChats {
 }

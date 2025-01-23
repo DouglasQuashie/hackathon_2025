@@ -3,7 +3,6 @@ import { cors } from 'hono/cors'
 import { logger } from 'hono/logger';
 
 import ChatRouter from '@/chat/ChatRouter';
-
 import { ContentfulStatusCode } from 'hono/utils/http-status';
 
 import io from '@/ws.router';

@@ -1,11 +1,12 @@
 import { AddChatDto } from '../interfaces/dto/AddChatDto';
 import ChatSend from '@/chat/events/ChatSend';
 import { InputFactory, OutputFactory, UseCase, UseCaseResponseBuilder } from '@/common/interfaces/UseCase';
+import { IChatRepositoryAddChat } from '@/chat/interfaces/IChatRepository';
 
 type Input = InputFactory<
 	AddChatDto,
 	{
-		addChat: (data: AddChatDto) => Promise<void>;
+		addChat: IChatRepositoryAddChat["addChat"];
 	}
 >
 type Output = OutputFactory<AddChatDto>
@@ -21,7 +22,7 @@ export const AddChatUseCase: UseCase<Input, Output> = (deps) => {
 				return UseCaseResponseBuilder.success(201, data);
 			} catch (error) {
 				console.log('AddChat Error', error);
-				return UseCaseResponseBuilder.error(400, "Something went wrong !");
+				return UseCaseResponseBuilder.error(500, "Something went wrong !");
 			}
 		}
 	};
