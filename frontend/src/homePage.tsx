@@ -4,7 +4,7 @@ import Map from "./components/Map"
 import Chat from "./components/Chat"
 
 export default function Home() {
-    const [user] = useState({ name: "John Doe" })
+    const [user, setUser] = useState({ name: "John Doe" })
 
   return (
     <div className="flex flex-col h-screen">
