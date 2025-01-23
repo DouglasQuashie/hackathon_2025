@@ -1,4 +1,6 @@
-.idea
 backend/node_modules
 backend/build
+backend/.env
+
+.idea
 .env

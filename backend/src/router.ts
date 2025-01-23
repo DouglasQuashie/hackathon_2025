@@ -2,7 +2,11 @@ import { Hono } from 'hono';
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger';
 
+import ChatRouter from '@/chat/ChatRouter';
+
 import { ContentfulStatusCode } from 'hono/utils/http-status';
+
+import io from '@/ws.router';
 
 const app = new Hono();
 
@@ -13,6 +17,8 @@ app.use(logger())
 
 app.get("/", (c) => c.text("Hello, world!"))
 
+app.route('/chat', ChatRouter);
+
 app.onError((handle, c) => {
 	const cause = handle.cause as { status: ContentfulStatusCode; data: unknown };
 	return c.json({ message: handle.message, status: cause.status, data: cause.data }, cause.status);
@@ -20,5 +26,6 @@ app.onError((handle, c) => {
 
 export default {
 	port: PORT,
-	fetch: app.fetch
+	fetch: app.fetch,
+	websocket: io.listen(3001)
 };
