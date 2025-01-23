@@ -9,8 +9,8 @@ function App() {
 	navigator.geolocation.getCurrentPosition(
 		(position) => {
 			localStorage.setItem('coordinates', JSON.stringify({
-				latitude: +position.coords.latitude,
-				longitude: +position.coords.longitude,
+				latitude: position.coords.latitude,
+				longitude: position.coords.longitude,
 			}));
 		},
 		(error) => {
@@ -20,7 +20,8 @@ function App() {
 
 	useEffect(() => {
 		async function init() {
-      		await getZone();
+			const zone = await getZone();
+			console.log(zone);
 		}
 
 		init();
