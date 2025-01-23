@@ -1,13 +1,13 @@
 import socket from '../lib/socket';
 import { WsEvent } from '../lib/common/WsEvent.ts';
 import type { Chat } from '../lib/chat/interfaces/Chat.ts';
-import { Navigate, useParams } from 'react-router';
+import { Navigate } from 'react-router';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { getChatByZone } from '../services/api.tsx';
 import { v4 } from 'uuid';
 
 export default function Chat() {
-    const {zone} = useParams<{ zone: string }>();
+    const zone = localStorage.getItem("zone");
 
     if (!zone)
         return <Navigate to="/" replace />;
@@ -15,16 +15,15 @@ export default function Chat() {
     const [message, setMessage] = useState<string>('');
     const [chats, setChats] = useState<Chat[]>([]);
 
+
     useEffect(() => {
         const fetchChats = async () => {
-            const chatsFetch = await getChatByZone(1);
+            const chatsFetch = await getChatByZone(zone);
+            console.log(chatsFetch);
             setChats(chatsFetch.data);
         };
-
         fetchChats();
-    }, []);
 
-    useEffect(() => {
         socket.on(WsEvent.SEND_CHAT, (chat: Chat) => {
             setChats((list) => [...list, chat]);
         });
