@@ -12,10 +12,10 @@ const ChatPage:FC<HomeProps> = () => {
 
 	navigator.geolocation.getCurrentPosition(
 		(position) => {
-
+			console.log(position);
 	},
 		(error) => {
-
+			console.log(error);
 		}
 	);
 	const [message, setMessage] = useState<string>('');
