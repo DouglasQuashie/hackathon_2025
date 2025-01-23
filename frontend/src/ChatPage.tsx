@@ -1,7 +1,6 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import socket from './lib/socket.ts';
 import { WsEvent } from './lib/common/WsEvent.ts';
-import { useParams } from 'react-router';
 import { Chat } from './lib/chat/interfaces/Chat.ts';
 import { v4 as uuidv4 } from 'uuid';
 import { getZone } from './lib/common/zone.ts';
@@ -9,12 +8,16 @@ import { getZone } from './lib/common/zone.ts';
 type HomeProps = {}
 
 const ChatPage:FC<HomeProps> = () => {
-	const params = useParams();
-	const zone = params.zone;
-	const [message, setMessage] = useState<string>("")
-	const [list, setList] = useState<any[]>([])
-const ChatPage: FC<HomeProps> = () => {
+	//const { zone } = useParams<{zone: string}>();
 
+	navigator.geolocation.getCurrentPosition(
+		(position) => {
+
+	},
+		(error) => {
+
+		}
+	);
 	const [message, setMessage] = useState<string>('');
 	const [chats, setChats] = useState<Chat[]>([]);
 
