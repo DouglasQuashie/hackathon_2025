@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polygon } from 'react-leaflet';
+import { MapContainer, TileLayer, Popup, Polygon } from 'react-leaflet';
 import { getZones } from '../services/api.tsx';
 import { LatLngExpression } from 'leaflet';
 
@@ -12,6 +12,16 @@ export default function Map() {
 			parseFloat(coord.longitude)
 		]);
 	};
+
+	const getPosition = (): LatLngExpression => {
+
+		const myPosition = JSON.parse(localStorage.getItem('coordinates') || '{}');
+
+		if (!myPosition)
+			return [48.8566, 2.3522];
+
+		return [myPosition.latitude, myPosition.longitude];
+	}
 
 	const colors = ['blue', 'green', 'red', 'purple', 'orange'];
 
@@ -28,7 +38,7 @@ export default function Map() {
 	console.log(zonesData);
 
 	return (
-		<MapContainer center={[48.8566, 2.3522]} zoom={13} style={{ height: "100%", width: "100%" }}>
+		<MapContainer  center={getPosition()} zoom={13} style={{ height: "100%", width: "100%" }}>
 			<TileLayer
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -44,9 +54,6 @@ export default function Map() {
 					<Popup>{zone.name}</Popup>
 				</Polygon>
 			))}
-			<Marker position={[48.8566, 2.3522]}>
-				<Popup>Paris, la ville lumière.</Popup>
-			</Marker>
 		</MapContainer>
 	);
 }
