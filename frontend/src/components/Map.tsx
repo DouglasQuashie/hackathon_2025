@@ -47,7 +47,7 @@ export default function Map() {
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			/>
-			{zonesData.length > 0 && zonesData.map((zone: any, index) => (
+			{zonesData.length > 0 && zonesData.map((zone: Zone, index) => (
 				<Polygon
 					key={zone.name}
 					positions={transformCoordinates(zone.coordinates)}
