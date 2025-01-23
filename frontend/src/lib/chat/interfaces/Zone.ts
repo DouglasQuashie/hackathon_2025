@@ -9,8 +9,8 @@ export type Zone = {
 }
 
 type Coordinate= {
-	latitude: number;
-	longitude: number;
+	latitude: string;
+	longitude: string;
 }
 
 export type ZoneItem = {

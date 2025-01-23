@@ -7,11 +7,8 @@ import { ZoneItem } from '../lib/chat/interfaces/Zone.ts';
 export default function Map() {
 	const [zonesData, setZones] = useState<ZoneItem[]>([]);
 
-	const transformCoordinates = (coordinates: {
-		latitude: string;
-		longitude: string;
-	}[]): LatLngExpression[] | LatLngExpression[][] | LatLngExpression[][][] => {
-		return coordinates.map((coord: { latitude: string; longitude: string; }) => [
+	const transformCoordinates = (coordinates: ZoneItem["coordinates"]): LatLngExpression[] | LatLngExpression[][] | LatLngExpression[][][] => {
+		return coordinates.map((coord) => [
 			parseFloat(coord.latitude),
 			parseFloat(coord.longitude)
 		]);
@@ -46,7 +43,7 @@ export default function Map() {
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			/>
-			{zonesData.length > 0 && zonesData.map((zone: Zone, index) => (
+			{zonesData.length > 0 && zonesData.map((zone, index) => (
 				<Polygon
 					key={zone.name}
 					positions={transformCoordinates(zone.coordinates)}
