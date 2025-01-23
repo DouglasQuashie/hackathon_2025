@@ -6,7 +6,7 @@ export async function getZone(): Promise<string | undefined> {
 	const zones = await getZones();
 	const myPosition = JSON.parse(localStorage.getItem('coordinates') || '{}');
 
-	if (!myPosition)
+	if (!myPosition.longitude || !myPosition.latitude)
 		return undefined;
 
 	for (const zone of zones.data) {
