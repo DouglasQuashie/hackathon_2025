@@ -7,6 +7,7 @@
   "dependencies": {
     "@prisma/client": "^5.15.1",
     "bun": "^1.1.18",
+    "hermal-back": "file:",
     "hono": "^4.4.7",
     "jsonwebtoken": "^9.0.2",
     "socket.io": "^4.7.5",
