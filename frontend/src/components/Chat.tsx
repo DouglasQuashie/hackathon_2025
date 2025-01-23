@@ -2,7 +2,6 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import socket from '../lib/socket';
 import { WsEvent } from '../lib/common/WsEvent.ts';
 import { v4 as uuidv4 } from 'uuid';
-import { getZone } from '../lib/common/zone.ts';
 import type { Chat } from '../lib/chat/interfaces/Chat.ts';
 import { getChatByZone } from '../services/api.tsx';
 
@@ -22,7 +21,6 @@ export default function Chat() {
 
     useEffect(() => {
         const fetchChats = async () => {
-            // const zone = getZone();
             setChats(await getChatByZone(1));
             setChats(chats);
         };
@@ -45,7 +43,7 @@ export default function Chat() {
             id: uuidv4(),
             createdAt: new Date(),
             content: message,
-            zone: getZone(),
+            zone: "1",
             username: localStorage.getItem('username') ?? 'Default username',
         };
         socket.emit(WsEvent.CHAT_SEND, chat);
@@ -63,7 +61,7 @@ export default function Chat() {
             <div className="flex p-4">
                 <h1 className='text-2xl'>Chat</h1>
             </div>
-            
+
             {/* Zone des messages */}
             <div className="flex-1 p-4 overflow-y-auto">
                 {chats.map((m) => (
@@ -96,7 +94,7 @@ export default function Chat() {
                     type="submit"
                     className="cursor-pointer ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
                 >
-                    Envoyer 
+                    Envoyer
                 </button>
             </form>
         </div>

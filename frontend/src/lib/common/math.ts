@@ -10,10 +10,10 @@ import { Point } from './interfaces/Point.ts';
  */
 export function isPointInHexagon(hexagonPoints: Point[], point: Point) {
 	// Ensure the hexagon is closed by appending the first point to the end
-	const coordinates = hexagonPoints.map(({ lat, lng }) => [lng, lat]);
+	const coordinates = hexagonPoints.map(({ latitude, longitude }) => [latitude, longitude]);
 	coordinates.push(coordinates[0]);
 
-	const pointGeo = turf.point([point.lng, point.lat]);
+	const pointGeo = turf.point([point.longitude, point.latitude]);
 	const hexagonPolygon = turf.polygon([
 		coordinates
 	]);

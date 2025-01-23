@@ -17,8 +17,8 @@ const ChatPage: FC<HomeProps> = () => {
 	navigator.geolocation.getCurrentPosition(
 		(position) => {
 			localStorage.setItem('coordinates', JSON.stringify({
-				latitude: position.coords.latitude,
-				longitude: position.coords.longitude,
+				latitude: +position.coords.latitude,
+				longitude: +position.coords.longitude,
 			}));
 			setIsGeoLocAccpeted(true);
 		},
