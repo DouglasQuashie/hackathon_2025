@@ -2,7 +2,7 @@ import socket from '../lib/socket';
 import { WsEvent } from '../lib/common/WsEvent.ts';
 import type { Chat } from '../lib/chat/interfaces/Chat.ts';
 import { Navigate } from 'react-router';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { getChatByZone } from '../services/api.tsx';
 import { v4 } from 'uuid';
 
@@ -32,7 +32,7 @@ export default function Chat() {
         };
     }, []);
 
-    const sendMessage = (e: React.FormEvent) => {
+    const sendMessage = (e: FormEvent) => {
         e.preventDefault();
         const chat: Chat = {
             id: v4(),
@@ -45,10 +45,6 @@ export default function Chat() {
 
         setChats((prevChats) => [...prevChats, chat]);
         setMessage('');
-    };
-
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setMessage(e.target.value);
     };
 
     return (
@@ -81,7 +77,7 @@ export default function Chat() {
                 <input
                     type="text"
                     value={message}
-                    onChange={handleInputChange}
+                    onChange={(e) => setMessage(e.target.value)}
                     placeholder="Tapez votre message..."
                     className="px-4 py-2 border rounded-md flex-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
