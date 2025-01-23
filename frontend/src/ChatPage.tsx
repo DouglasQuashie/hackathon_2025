@@ -5,7 +5,7 @@ import { Chat } from './lib/chat/interfaces/Chat.ts';
 import { v4 as uuidv4 } from 'uuid';
 import { getZone } from './lib/common/zone.ts';
 
-type HomeProps = {}
+type HomeProps = object
 
 const ChatPage:FC<HomeProps> = () => {
 	//const { zone } = useParams<{zone: string}>();
@@ -41,7 +41,7 @@ const ChatPage:FC<HomeProps> = () => {
 		return () => {
 			socket.off(WsEvent.SEND_CHAT);
 		};
-	}, [socket]);
+	}, []);
 
 
 	return (

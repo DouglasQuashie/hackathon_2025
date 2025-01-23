@@ -14,7 +14,7 @@ export default function Map() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <Marker position={[48.8566, 2.3522]}>
-            <Popup>Paris, la ville lumière.</Popup>
+                <Popup>Paris, la ville lumière.</Popup>
             </Marker>
         </MapContainer>
     )
