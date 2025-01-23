@@ -1,5 +1,5 @@
 import { EventManager } from "@/common/utils/EventManager";
-import { AddChatDto } from "@/chat/interfaces/dto/AddChatDto";
+import { AddChatDto } from "@/zone/interfaces/dto/AddChatDto";
 
 const ChatSend = EventManager<AddChatDto>();
 

@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import ChatController from '@/chat/controllers/ChatController';
+import ChatController from '@/zone/controllers/ChatController';
 import { CheckBodyMiddleware } from '@/common/middlewares/middleware';
 import z from 'zod';
 

@@ -1,4 +1,4 @@
-import { AddChatDto } from '@/chat/interfaces/dto/AddChatDto';
+import { AddChatDto } from '@/zone/interfaces/dto/AddChatDto';
 import { Chat } from '@/common/entities/Chat';
 
 export interface IChatRepositoryAddChat {

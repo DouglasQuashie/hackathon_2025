@@ -1,7 +1,7 @@
 import { AddChatDto } from '../interfaces/dto/AddChatDto';
-import ChatSend from '@/chat/events/ChatSend';
+import ChatSend from '@/zone/events/ChatSend';
 import { InputFactory, OutputFactory, UseCase, UseCaseResponseBuilder } from '@/common/interfaces/UseCase';
-import { IChatRepositoryAddChat } from '@/chat/interfaces/IChatRepository';
+import { IChatRepositoryAddChat } from '@/zone/interfaces/IChatRepository';
 import { Chat } from '@/common/entities/Chat';
 
 type Input = InputFactory<

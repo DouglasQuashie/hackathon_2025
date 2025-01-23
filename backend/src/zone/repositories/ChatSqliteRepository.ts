@@ -1,5 +1,5 @@
 import prisma from '@/common/db';
-import { IChatSQLiteRepository } from '@/chat/interfaces/IChatSQLiteRepository';
+import { IChatSQLiteRepository } from '@/zone/interfaces/IChatSQLiteRepository';
 import { Chat } from '@/common/entities/Chat';
 
 export const ChatSqliteRepository = (): IChatSQLiteRepository => {

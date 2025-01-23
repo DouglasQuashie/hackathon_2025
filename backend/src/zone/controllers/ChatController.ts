@@ -1,11 +1,10 @@
 import { Socket } from 'socket.io';
-import { AddChatDto } from '@/chat/interfaces/dto/AddChatDto';
-import { AddChatUseCase } from '@/chat/usecases/AddChatUseCase';
-import { ChatSqliteRepository } from '@/chat/repositories/ChatSqliteRepository';
+import { AddChatDto } from '@/zone/interfaces/dto/AddChatDto';
+import { AddChatUseCase } from '@/zone/usecases/AddChatUseCase';
+import { ChatSqliteRepository } from '@/zone/repositories/ChatSqliteRepository';
 import { WsEvent } from '@/common/WsEvent';
-import io from '@/ws.router';
 import { Context } from 'hono';
-import { GetChatUseCase } from '@/chat/usecases/GetChatsUseCase';
+import { GetChatUseCase } from '@/zone/usecases/GetChatsUseCase';
 
 const getChats = async (c: Context) => {
 	const zone = c.req.query('zone') as string;

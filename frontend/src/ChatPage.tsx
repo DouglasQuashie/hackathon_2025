@@ -7,19 +7,25 @@ import { getZone } from './lib/common/zone.ts';
 
 type HomeProps = object
 
-const ChatPage:FC<HomeProps> = () => {
+const ChatPage: FC<HomeProps> = () => {
 	//const { zone } = useParams<{zone: string}>();
+
+	const [message, setMessage] = useState<string>('');
+	const [chats, setChats] = useState<Chat[]>([]);
+	const [isGeoLocAccpeted, setIsGeoLocAccpeted] = useState<boolean | undefined>(undefined);
 
 	navigator.geolocation.getCurrentPosition(
 		(position) => {
-			console.log(position);
-	},
-		(error) => {
-			console.log(error);
+			localStorage.setItem('coordinates', JSON.stringify({
+				latitude: position.coords.latitude,
+				longitude: position.coords.longitude,
+			}));
+			setIsGeoLocAccpeted(true);
+		},
+		() => {
+			setIsGeoLocAccpeted(false);
 		}
 	);
-	const [message, setMessage] = useState<string>('');
-	const [chats, setChats] = useState<Chat[]>([]);
 
 	const sendMessage = () => {
 		const chat: Chat = {
@@ -43,9 +49,23 @@ const ChatPage:FC<HomeProps> = () => {
 		};
 	}, []);
 
+	function getText() {
+		if (isGeoLocAccpeted === undefined) {
+			return <div>Undefined</div>;
+		}
+
+		if (!isGeoLocAccpeted) {
+			return <div>False</div>;
+
+		}
+		return <div>True</div>;
+	}
+
 
 	return (
 		<div>
+			{getText()}
+
 			<input value={message} onChange={(e: ChangeEvent<HTMLInputElement>) => setMessage(e.target.value)}/>
 			<button onClick={sendMessage}>Submit....</button>
 			{chats.map((chat, idx) => <p key={idx}>{chat.content}</p>)}
