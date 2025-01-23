@@ -20,7 +20,7 @@ function App() {
 
 	useEffect(() => {
 		async function init() {
-			const zone = await getZone();
+      		await getZone();
 		}
 
 		init();

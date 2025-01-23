@@ -3,11 +3,17 @@ import { MapContainer, TileLayer, Popup, Polygon } from 'react-leaflet';
 import { getZones } from '../services/api.tsx';
 import { LatLngExpression } from 'leaflet';
 
-export default function Map() {
-	const [zonesData, setZones] = useState<any[]>([]);
+interface Zone {
+    name: string;
+    coordinates: { latitude: string; longitude: string; }[];
+}
 
-	const transformCoordinates = (coordinates: any) => {
-		return coordinates.map(coord => [
+export default function Map() {
+	
+	const [zonesData, setZones] = useState<Zone[]>([]);
+
+	const transformCoordinates = (coordinates: { latitude: string; longitude: string; }[]) => {
+		return coordinates.map((coord: { latitude: string; longitude: string; }) => [
 			parseFloat(coord.latitude),
 			parseFloat(coord.longitude)
 		]);
