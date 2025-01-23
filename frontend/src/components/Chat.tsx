@@ -19,7 +19,6 @@ export default function Chat() {
     useEffect(() => {
         const fetchChats = async () => {
             const chatsFetch = await getChatByZone(zone);
-            console.log(chatsFetch);
             setChats(chatsFetch.data);
         };
         fetchChats();
@@ -38,7 +37,7 @@ export default function Chat() {
             id: v4(),
             createdAt: new Date(),
             content: message,
-            zone: "1",
+            zone: zone,
             username: localStorage.getItem('username') ?? 'Default username',
         };
         socket.emit(WsEvent.CHAT_SEND, chat);
