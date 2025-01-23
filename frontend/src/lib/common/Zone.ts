@@ -1,5 +1,6 @@
-import { getZones } from '../../services/api.tsx';
-import { isPointInHexagon } from './math.ts';
+import { getZones } from '../../services/Api.tsx';
+import { isPointInHexagon } from './Math.ts';
+
 
 export async function getZone(): Promise<string | undefined> {
 	const zones = await getZones();

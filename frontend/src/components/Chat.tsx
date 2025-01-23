@@ -3,8 +3,8 @@ import { WsEvent } from '../lib/common/WsEvent.ts';
 import type { Chat } from '../lib/chat/interfaces/Chat.ts';
 import { Navigate } from 'react-router';
 import { FormEvent, useEffect, useState } from 'react';
-import { getChatByZone } from '../services/api.tsx';
 import { v4 } from 'uuid';
+import { getChatByZone } from '../services/Api.tsx';
 
 export default function Chat() {
     const zone = localStorage.getItem("zone");

@@ -8,7 +8,7 @@ import { Point } from './interfaces/Point.ts';
  * @param {Object} point - Latitude and longitude of the point to check (e.g., {lat, lng}).
  * @returns {boolean} - True if the point is inside the hexagon, otherwise false.
  */
-export function isPointInHexagon(hexagonPoints: Point[], point: Point) {
+export function isPointInHexagon(hexagonPoints: Point[], point: Point): boolean {
 	// Transform coordinates, ensuring they're properly parsed
 	const coordinates = hexagonPoints.map(coord => [
 		parseFloat(coord.longitude),
