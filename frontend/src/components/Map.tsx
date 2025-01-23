@@ -35,8 +35,6 @@ export default function Map() {
 		import('leaflet/dist/leaflet.css');
 	}, []);
 
-	console.log(zonesData);
-
 	return (
 		<MapContainer  center={getPosition()} zoom={13} style={{ height: "100%", width: "100%" }}>
 			<TileLayer

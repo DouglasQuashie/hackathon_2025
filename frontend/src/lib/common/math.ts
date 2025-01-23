@@ -9,15 +9,21 @@ import { Point } from './interfaces/Point.ts';
  * @returns {boolean} - True if the point is inside the hexagon, otherwise false.
  */
 export function isPointInHexagon(hexagonPoints: Point[], point: Point) {
-	// Ensure the hexagon is closed by appending the first point to the end
-	const coordinates = hexagonPoints.map(({ latitude, longitude }) => [latitude, longitude]);
-	coordinates.push(coordinates[0]);
-
-	const pointGeo = turf.point([point.longitude, point.latitude]);
-	const hexagonPolygon = turf.polygon([
-		coordinates
+	// Transform coordinates, ensuring they're properly parsed
+	const coordinates = hexagonPoints.map(coord => [
+		parseFloat(coord.longitude),
+		parseFloat(coord.latitude)
 	]);
 
-	// Use Turf.js to check if the point is in the polygon
+	// Close the polygon by repeating the first point
+	coordinates.push(coordinates[0]);
+
+	const pointGeo = turf.point([
+		parseFloat(point.longitude),
+		parseFloat(point.latitude)
+	]);
+
+	const hexagonPolygon = turf.polygon([coordinates]);
+
 	return turf.booleanPointInPolygon(pointGeo, hexagonPolygon);
 }
