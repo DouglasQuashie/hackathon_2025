@@ -5,7 +5,7 @@ const API_URL = 'http://localhost:3000';
 export const getChatByZone = async (zone: number) => {
     try {
         const response = await axios.get(`${API_URL}/chat`, {
-            params: { zone: zone }
+            params: { zone: zone.toString() }
         });
         return response.data;
     } catch (error) {

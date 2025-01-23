@@ -1,38 +1,28 @@
-import { ChangeEvent, useEffect, useState } from 'react';
 import socket from '../lib/socket';
 import { WsEvent } from '../lib/common/WsEvent.ts';
-import { v4 as uuidv4 } from 'uuid';
 import type { Chat } from '../lib/chat/interfaces/Chat.ts';
+import { Navigate, useParams } from 'react-router';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { getChatByZone } from '../services/api.tsx';
+import { v4 } from 'uuid';
 
 export default function Chat() {
-    
-    const [isGeoLocAccpeted, setIsGeoLocAccpeted] = useState<boolean | undefined>(undefined);
-    
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            localStorage.setItem('coordinates', JSON.stringify({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-            }));
-            setIsGeoLocAccpeted(true);
-        },
-        () => {
-            setIsGeoLocAccpeted(false);
-        }
-    );
+    const {zone} = useParams<{ zone: string }>();
+
+    if (!zone)
+        return <Navigate to="/" replace />;
 
     const [message, setMessage] = useState<string>('');
     const [chats, setChats] = useState<Chat[]>([]);
 
     useEffect(() => {
         const fetchChats = async () => {
-            setChats(await getChatByZone(1));
-            setChats(chats);
+            const chatsFetch = await getChatByZone(1);
+            setChats(chatsFetch.data);
         };
 
         fetchChats();
-    }, [chats]);
+    }, []);
 
     useEffect(() => {
         socket.on(WsEvent.SEND_CHAT, (chat: Chat) => {
@@ -46,7 +36,7 @@ export default function Chat() {
     const sendMessage = (e: React.FormEvent) => {
         e.preventDefault();
         const chat: Chat = {
-            id: uuidv4(),
+            id: v4(),
             createdAt: new Date(),
             content: message,
             zone: "1",
@@ -70,7 +60,7 @@ export default function Chat() {
 
             {/* Zone des messages */}
             <div className="flex-1 p-4 overflow-y-auto">
-                {chats.map((m) => (
+                {chats.length > 0 && chats.map((m) => (
                     <div
                         key={m.id}
                         className={`mb-4 text-right`}

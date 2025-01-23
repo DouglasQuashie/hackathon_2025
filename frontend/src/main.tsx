@@ -5,13 +5,14 @@ import App from './App.tsx'
 import { BrowserRouter, Route, Routes } from 'react-router';
 import ChatPage from './ChatPage.tsx';
 import Home from './homePage.tsx';
+import Chat from './components/Chat.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/chat/:zone" element={<ChatPage />} />
+        <Route path="/chat/:zone" element={<Chat />} />
         <Route path="/homePage" element={<Home />} />
       </Routes>
     </BrowserRouter>

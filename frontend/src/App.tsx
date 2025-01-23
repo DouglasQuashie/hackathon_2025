@@ -21,7 +21,7 @@ function App() {
 	useEffect(() => {
 		async function init() {
 			const zone = await getZone();
-			console.log(zone);
+			localStorage.setItem("zone", zone);
 		}
 
 		init();

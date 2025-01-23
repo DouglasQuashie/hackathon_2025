@@ -10,10 +10,9 @@ export async function getZone(): Promise<string | undefined> {
 
 	for (const zone of zones.data) {
 		const isPositionInPoint = isPointInHexagon(zone.coordinates, myPosition);
-		if (isPositionInPoint) {
-			localStorage.setItem("zone", zone.name);
+		if (isPositionInPoint)
 			return zone.name
-		}
+
 	}
 
 	return undefined;
