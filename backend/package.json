@@ -2,7 +2,9 @@
   "name": "hermal-back",
   "scripts": {
     "dev": "bun run --hot src/router.ts",
-    "build": "bun build ./src/router.ts --target=bun --outfile=build/server.js"
+    "build": "bun build ./src/router.ts --target=bun --outfile=build/server.js",
+    "postinstall": "npx prisma generate",
+    "prod:docker": "npx prisma migrate deploy && bun run /app/build/server.js"
   },
   "dependencies": {
     "@prisma/client": "^5.15.1",

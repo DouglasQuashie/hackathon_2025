@@ -5,6 +5,7 @@ FROM base AS builder
 WORKDIR /app
 
 COPY package*json tsconfig.json src ./
+COPY ./prisma ./prisma
 
 RUN bun install;
 
@@ -20,9 +21,10 @@ RUN adduser --system --uid 1001 hono
 
 COPY --from=builder --chown=hono:nodejs /app/node_modules /app/node_modules
 COPY --from=builder --chown=hono:nodejs /app/build /app/build
+COPY --from=builder --chown=hono:nodejs /app/prisma /app/prisma
 COPY --from=builder --chown=hono:nodejs /app/package.json /app/package.json
 
 USER hono
 EXPOSE 3000
 
-CMD ["bun", "run", "/app/build/server.js"]
+CMD ["bun", "run", "prod:docker"]
