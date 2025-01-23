@@ -1,23 +1,34 @@
-import './App.css'
-import "tailwindcss";
-import Home from './homePage'
+import './App.css';
+import 'tailwindcss';
+import Home from './homePage';
 import { useEffect } from 'react';
 import { getZone } from './lib/common/zone.ts';
 
 function App() {
 
-  useEffect(() => {
-    async function init() {
+	navigator.geolocation.getCurrentPosition(
+		(position) => {
+			localStorage.setItem('coordinates', JSON.stringify({
+				latitude: +position.coords.latitude,
+				longitude: +position.coords.longitude,
+			}));
+		},
+		(error) => {
+			console.log(error);
+		}
+	);
 
-      const zone = await getZone();
-      console.log(zone);
-    }
-    init();
-  }, []);
+	useEffect(() => {
+		async function init() {
+			const zone = await getZone();
+		}
 
-  return (
-    <Home></Home>
-  )
+		init();
+	}, []);
+
+	return (
+		<Home></Home>
+	);
 }
 
-export default App
+export default App;

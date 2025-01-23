@@ -6,16 +6,6 @@ import type { Chat } from '../lib/chat/interfaces/Chat.ts';
 import { getChatByZone } from '../services/api.tsx';
 
 export default function Chat() {
-
-    navigator.geolocation.getCurrentPosition(
-		(position) => {
-			console.log(position);
-	},
-		(error) => {
-			console.log(error);
-		}
-	);
-
     const [message, setMessage] = useState<string>('');
     const [chats, setChats] = useState<Chat[]>([]);
 
