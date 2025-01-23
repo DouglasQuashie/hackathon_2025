@@ -22,7 +22,8 @@ export const onChat = async (socket: Socket, data: AddChatDto) => {
 	if (!result.isSuccess)
 		return;
 
-	io.to(data.zone).emit(WsEvent.SEND_CHAT, result.data);
+	console.log(data);
+	socket.to(data.zone).emit(WsEvent.SEND_CHAT, result.data);
 };
 
 export default {

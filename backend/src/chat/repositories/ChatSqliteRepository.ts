@@ -11,8 +11,8 @@ export const ChatSqliteRepository = (): IChatSQLiteRepository => {
 				take: 50
 			});
 		},
-		async addChat(chat): Promise<void> {
-			await prisma.chat.create({
+		addChat(chat): Promise<Chat> {
+			return prisma.chat.create({
 				data: chat,
 			});
 		}

@@ -1,4 +1,4 @@
-import { Server } from "socket.io";
+import { Server, Socket } from 'socket.io';
 import { WsEvent } from "@/common/WsEvent";
 import { WsMiddleware } from '@/common/middlewares/middleware';
 import ChatController from "@/chat/controllers/ChatController";
@@ -9,6 +9,8 @@ const io = new Server({
 });
 
 io.on(WsEvent.CONNECTION, (socket) => {
+
+	socket.on(WsEvent.JOIN_ZONE, (zone: string) => socket.join(zone));
 
 	socket.on(WsEvent.CHAT_SEND, (data) => WsMiddleware(socket, data, addChatDto) && ChatController.onChat(socket, data));
 

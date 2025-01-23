@@ -14,8 +14,14 @@ export const DefaultMiddleware: MiddlewareFunction = (body, schema) => {
 export const WsMiddleware = (socket: Socket, data: unknown, schema: ZodSchema, middleware = DefaultMiddleware) => {
 	try {
 		middleware(data, schema)
+		console.log("WsMiddleware try", data, schema);
+
 		return true
 	} catch (error) {
+		// @ts-ignore
+		console.log("WsMiddleware error", error.errors);
+
+
 		socket.emit("error:message", error);
 		return false;
 	}
