@@ -6,6 +6,22 @@ import type { Chat } from '../lib/chat/interfaces/Chat.ts';
 import { getChatByZone } from '../services/api.tsx';
 
 export default function Chat() {
+    
+    const [isGeoLocAccpeted, setIsGeoLocAccpeted] = useState<boolean | undefined>(undefined);
+    
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            localStorage.setItem('coordinates', JSON.stringify({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+            }));
+            setIsGeoLocAccpeted(true);
+        },
+        () => {
+            setIsGeoLocAccpeted(false);
+        }
+    );
+
     const [message, setMessage] = useState<string>('');
     const [chats, setChats] = useState<Chat[]>([]);
 
