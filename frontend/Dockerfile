@@ -1,6 +1,10 @@
-FROM oven/bun as base
+FROM node:lts-alpine AS base
+ENV NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production YARN_VERSION=4.6.0
+RUN corepack enable && corepack prepare yarn@${YARN_VERSION}
+
+FROM base AS builder
 WORKDIR /app
 COPY . .
-RUN bun install && bun run build
+RUN yarn install && yarn build
 EXPOSE 3000
-CMD ["bun", "serve", "dist"]
+CMD ["yarn", "serve", "dist"]
