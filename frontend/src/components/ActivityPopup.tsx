@@ -2,6 +2,7 @@ import React from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Button } from './ui/button';
 import { ScrollArea } from './ui/scroll-area.tsx';
+import { getEvents } from '../services/Api.ts';
 
 
 interface Activity {
