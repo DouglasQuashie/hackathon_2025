@@ -1,15 +1,12 @@
 import socket from '../lib/socket';
 import { WsEvent } from '../lib/common/WsEvent.ts';
 import type { Chat } from '../lib/chat/interfaces/Chat.ts';
-import { Navigate } from 'react-router';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 import { getChatByZone } from '../services/Api.ts';
 
 export default function Chat({username}: {username: string}) {
-    const zone = localStorage.getItem("zone") ?? "1";
-
-    if (!zone) return <Navigate to="/" replace />;
+    const zone = localStorage.getItem("zone")!;
 
     const [content, setContent] = useState<string>('');
     const [chats, setChats] = useState<Chat[]>([]);
