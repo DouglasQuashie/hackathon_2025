@@ -2,34 +2,48 @@ import socket from '../lib/socket';
 import { WsEvent } from '../lib/common/WsEvent.ts';
 import type { Chat } from '../lib/chat/interfaces/Chat.ts';
 import { Navigate } from 'react-router';
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 import { getChatByZone } from '../services/Api.ts';
 
 export default function Chat() {
     const zone = localStorage.getItem("zone");
 
-    if (!zone)
-        return <Navigate to="/" replace />;
+    if (!zone) return <Navigate to="/" replace />;
 
     const [message, setMessage] = useState<string>('');
     const [chats, setChats] = useState<Chat[]>([]);
+    const messagesEndRef = useRef<HTMLDivElement>(null);
 
+    // Fonction pour scroller jusqu'au bas
+    const scrollToBottom = () => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     useEffect(() => {
+        // Fetch des messages à l'initialisation
         const fetchChats = async () => {
             const chatsFetch = await getChatByZone(zone);
             setChats(chatsFetch.data);
         };
         fetchChats();
 
+        // Écoute des nouveaux messages
         socket.on(WsEvent.SEND_CHAT, (chat: Chat) => {
             setChats((list) => [...list, chat]);
         });
+
         return () => {
             socket.off(WsEvent.SEND_CHAT);
         };
-    }, []);
+    }, [zone]);
+
+    useEffect(() => {
+        // Scroller automatiquement quand les messages changent
+        scrollToBottom();
+    }, [chats]);
 
     const sendMessage = (e: FormEvent) => {
         e.preventDefault();
@@ -66,6 +80,9 @@ export default function Chat() {
                         </span>
                     </div>
                 ))}
+
+                {/* Référence pour scroller en bas */}
+                <div ref={messagesEndRef} />
             </div>
 
             {/* Zone d'entrée */}
