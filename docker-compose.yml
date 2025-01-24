@@ -1,16 +1,11 @@
+version: "3"
 services:
   backend:
-    build:
-      context: backend
-      dockerfile: Dockerfile
+    image: narvals_arctiques_back
     env_file: .env
-    restart: always
     ports:
       - "8000:3000"
   frontend:
-    build:
-      context: frontend
-      dockerfile: Dockerfile
-    restart: always
+    image: narvals_arctiques_front
     ports:
       - "3000:3000"

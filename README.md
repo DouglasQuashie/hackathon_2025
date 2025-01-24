@@ -34,20 +34,29 @@ The front-end will be served to [localhost:5173](localhost:5173)
 ### Production mode
 For the production mode, we use Docker.
 
-There is 2 ways to run the project in production mode, either running each docker images apart (backend and frontend)
+You need to build the images for the front and the back, and then run the docker compose
 
 #### Back-end
 ```bash
 cd backend
-docker build -t "backend" .
-docker run -p 8000:3000 backend
+docker build -t "narvals_arctiques_back" .
 ```
-
-The back-end will be served to [localhost:8000](localhost:8000)
 
 #### Front-end
 ```bash
 cd frontend
-docker build -t "frontend" .
-docker run -p 3000:3000 frontend
+docker build -t "narvals_arctiques_front" .
 ```
+
+#### Docker compose
+```bash
+docker compose up
+```
+
+OR
+
+```bash
+docker-compose up
+```
+
+The back-end will be served on [localhost:8000](localhost:8000) and the front end on [localhost:3000](localhost:3000)
