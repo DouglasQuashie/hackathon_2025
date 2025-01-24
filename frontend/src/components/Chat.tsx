@@ -70,13 +70,14 @@ export default function Chat() {
                 {chats.length > 0 && chats.map((m) => (
                     <div
                         key={m.id}
-                        className={`mb-4 text-right`}
+                        className={`mb-4 break-words text-right ${m.username === username ? 'text-end' : 'text-start'}`}
                     >
-                        <span
+                        <div
                             className={`inline-block p-3 rounded-lg max-w-xs bg-blue-500 text-white`}
                         >
+	                        <p className="text-black text-sm">{m.username}</p>
                             {m.content}
-                        </span>
+                        </div>
                     </div>
                 ))}
 

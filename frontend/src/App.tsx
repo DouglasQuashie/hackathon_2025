@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import Home from './components/Home.tsx';
 import { getZone } from './lib/common/Zone.ts';
 import { toast } from './hooks/use-toast.ts';
+import { WsEvent } from './lib/common/WsEvent.ts';
+import socket from './lib/socket.ts';
 
 function App() {
 
@@ -25,9 +27,9 @@ function App() {
 
 	useEffect(() => {
 		async function init() {
-			const zone = await getZone();
-			console.log(zone);
-			localStorage.setItem("zone", zone ?? "1");
+			const zone = await getZone() ?? "-1";
+			localStorage.setItem("zone", zone);
+			socket.emit(WsEvent.JOIN_ZONE, zone);
 		}
 
 		init();
