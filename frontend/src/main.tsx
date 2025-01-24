@@ -7,7 +7,7 @@ import App from './App.tsx'
 import './index.css'
 import EventForm from './components/EventForm.tsx';
 import { onEventCreated } from './services/Event.ts';
-import EventSinistre from './components/EventSinistre.tsx';
+import EventCatastrophe from './components/EventCatastrophe.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/activity" element={<EventForm onEventCreated={onEventCreated} />} />
-	      <Route path="/catastrophe" element={<EventSinistre onEventCreated={onEventCreated} />} />
+	      <Route path="/catastrophe" element={<EventCatastrophe onEventCreated={onEventCreated} />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
