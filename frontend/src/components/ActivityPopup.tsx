@@ -21,7 +21,7 @@ export const ActivityPopup: React.FC<ActivityPopupProps> = ({ activities }) => {
 			<DialogTrigger asChild>
 				<Button>Voir les activités</Button>
 			</DialogTrigger>
-			<DialogContent className="sm:max-w-[425px] z-[1000]">
+			<DialogContent className="sm:max-w-[425px] z-[1000] bg-white">
 				<DialogHeader>
 					<DialogTitle>Liste des activités</DialogTitle>
 					<DialogDescription>

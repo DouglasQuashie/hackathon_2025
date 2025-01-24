@@ -21,7 +21,7 @@ export const CatastrophePopup: React.FC<CatastrophePopupProps> = ({ catastrophes
 			<DialogTrigger asChild>
 				<Button>Voir les catastrophes</Button>
 			</DialogTrigger>
-			<DialogContent className="sm:max-w-[425px] z-[1000]">
+			<DialogContent className="sm:max-w-[425px] z-[1000] bg-white">
 				<DialogHeader>
 					<DialogTitle>Liste des catastrophes</DialogTitle>
 					<DialogDescription>
