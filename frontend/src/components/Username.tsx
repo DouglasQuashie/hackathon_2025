@@ -5,20 +5,25 @@ import { Input } from './ui/input.tsx';
 import { Button } from './ui/button.tsx';
 import Chat from './Chat.tsx';
 
-export default function Username() {
-	const [username, setUsername] = useState("")
-	const [isLoggedIn, setIsLoggedIn] = useState(false)
+export default function Username({ setUsername, username }: {
+	setUsername: (username: string) => void,
+	username: string
+}) {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [localUsername, setLocalUsername] = useState('');
 
 	const handleSubmit = (e: FormEvent) => {
-		e.preventDefault()
-		if (username.trim()) {
-			localStorage.setItem('username', username)
-			setIsLoggedIn(true)
+		console.log("submits");
+		e.preventDefault();
+		if (localUsername.trim()) {
+			localStorage.setItem('username', localUsername);
+			setUsername(localUsername);
+			setIsLoggedIn(true);
 		}
-	}
+	};
 
 	if (isLoggedIn) {
-		return <Chat />
+		return <Chat username={username}/>;
 	}
 
 	return (
@@ -32,8 +37,8 @@ export default function Username() {
 							id="username"
 							type="text"
 							placeholder="Entrez votre nom d'utilisateur"
-							value={username}
-							onChange={(e) => setUsername(e.target.value)}
+							value={localUsername}
+							onChange={(e) => setLocalUsername(e.target.value)}
 							required
 						/>
 					</div>
@@ -43,6 +48,6 @@ export default function Username() {
 				</form>
 			</div>
 		</div>
-	)
+	);
 }
 

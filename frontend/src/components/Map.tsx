@@ -18,7 +18,7 @@ export default function Map() {
 
 		const myPosition = JSON.parse(localStorage.getItem('coordinates') || '{}');
 
-		if (!myPosition)
+		if (!myPosition.latitude && !myPosition.longitude)
 			return [48.8566, 2.3522];
 
 		return [myPosition.latitude, myPosition.longitude];

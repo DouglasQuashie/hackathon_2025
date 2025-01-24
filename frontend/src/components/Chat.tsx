@@ -6,12 +6,12 @@ import { FormEvent, useEffect, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 import { getChatByZone } from '../services/Api.ts';
 
-export default function Chat() {
-    const zone = localStorage.getItem("zone");
+export default function Chat({username}: {username: string}) {
+    const zone = localStorage.getItem("zone") ?? "1";
 
     if (!zone) return <Navigate to="/" replace />;
 
-    const [message, setMessage] = useState<string>('');
+    const [content, setContent] = useState<string>('');
     const [chats, setChats] = useState<Chat[]>([]);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -26,6 +26,7 @@ export default function Chat() {
         // Fetch des messages à l'initialisation
         const fetchChats = async () => {
             const chatsFetch = await getChatByZone(zone);
+            console.log(chatsFetch);
             setChats(chatsFetch.data);
         };
         fetchChats();
@@ -50,14 +51,14 @@ export default function Chat() {
         const chat: Chat = {
             id: v4(),
             createdAt: new Date(),
-            content: message,
-            zone: zone,
-            username: localStorage.getItem('username') ?? 'Default username',
+            content,
+            zone,
+            username,
         };
         socket.emit(WsEvent.CHAT_SEND, chat);
 
         setChats((prevChats) => [...prevChats, chat]);
-        setMessage('');
+        setContent('');
     };
 
     return (
@@ -92,8 +93,8 @@ export default function Chat() {
             >
                 <input
                     type="text"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
                     placeholder="Tapez votre message..."
                     className="px-4 py-2 border rounded-md flex-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
