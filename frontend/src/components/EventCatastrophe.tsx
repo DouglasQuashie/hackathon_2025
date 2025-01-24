@@ -95,11 +95,11 @@ const EventForm: React.FC<EventFormProps> = ({ onEventCreated }) => {
 								<FormLabel>Titre</FormLabel>
 								<Select onValueChange={field.onChange} defaultValue={field.value}>
 									<FormControl>
-										<SelectTrigger>
+										<SelectTrigger className='cursor-pointer'>
 											<SelectValue placeholder="Titre de l'événement"/>
 										</SelectTrigger>
 									</FormControl>
-									<SelectContent className='bg-white '>
+									<SelectContent className='bg-white'>
 										<SelectItem key={0} value={'Innodation'} className='cursor-pointer hover:bg-gray-200'>
 											Innodation
 										</SelectItem>
@@ -122,7 +122,7 @@ const EventForm: React.FC<EventFormProps> = ({ onEventCreated }) => {
 								<FormLabel>Zone</FormLabel>
 								<Select onValueChange={field.onChange} defaultValue={field.value}>
 									<FormControl>
-										<SelectTrigger>
+										<SelectTrigger className='cursor-pointer'>	
 											<SelectValue placeholder="Sélectionnez une zone"/>
 										</SelectTrigger>
 									</FormControl>

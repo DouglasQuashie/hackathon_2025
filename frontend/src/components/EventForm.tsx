@@ -108,7 +108,7 @@ const EventForm: React.FC<EventFormProps> = ({ onEventCreated }) => {
 								<FormLabel>Zone</FormLabel>
 								<Select onValueChange={field.onChange} defaultValue={field.value}>
 									<FormControl>
-										<SelectTrigger>
+										<SelectTrigger className='cursor-pointer'>
 											<SelectValue placeholder="Sélectionnez une zone"/>
 										</SelectTrigger>
 									</FormControl>
