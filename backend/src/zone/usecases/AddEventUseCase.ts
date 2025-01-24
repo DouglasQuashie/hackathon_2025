@@ -1,8 +1,8 @@
 import { InputFactory, OutputFactory, UseCase, UseCaseResponseBuilder } from '@/common/interfaces/UseCase';
 import { AddEventDto } from '@/zone/interfaces/dto/AddEventDto';
 import EventSend from '@/zone/events/EventSend';
-import { Zone } from '@/zone/interfaces/Zone';
 import { IEventRepositoryAddZone } from '@/zone/interfaces/IEventRepository';
+import { Event } from '@/zone/interfaces/Event';
 
 type Input = InputFactory<
 	AddEventDto,

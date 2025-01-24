@@ -6,3 +6,8 @@ export interface IEventRepositoryAddZone {
 	addEvent(addZone: AddEventDto): Promise<Event>;
 }
 
+export interface IEventRepositoryGetEvents {
+	getEvents(type: string): Promise<Event[]>;
+}
+
+

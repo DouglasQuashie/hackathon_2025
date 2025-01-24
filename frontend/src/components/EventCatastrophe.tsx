@@ -51,7 +51,7 @@ const EventForm: React.FC<EventFormProps> = ({ onEventCreated }) => {
 			});
 			setTimeout(() => {
 				location.replace("/");
-			});
+			}, 1000);
 		} catch (e) {
 			toast({
 				title: 'Erreur',
@@ -122,7 +122,7 @@ const EventForm: React.FC<EventFormProps> = ({ onEventCreated }) => {
 								<FormLabel>Zone</FormLabel>
 								<Select onValueChange={field.onChange} defaultValue={field.value}>
 									<FormControl>
-										<SelectTrigger className='cursor-pointer'>	
+										<SelectTrigger className='cursor-pointer'>
 											<SelectValue placeholder="Sélectionnez une zone"/>
 										</SelectTrigger>
 									</FormControl>

@@ -18,8 +18,10 @@ const getChats = async (c: Context) => {
 
 export const onChat = async (socket: Socket, data: AddChatDto) => {
 	const result = await AddChatUseCase(ChatSqliteRepository()).execute(data);
+	console.log(result);
 	if (!result.isSuccess)
 		return;
+
 
 	console.log(data);
 	socket.to(data.zone).emit(WsEvent.SEND_CHAT, result.data);

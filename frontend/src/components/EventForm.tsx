@@ -51,8 +51,8 @@ const EventForm: React.FC<EventFormProps> = ({ onEventCreated }) => {
 				description: 'Votre nouvel événement a été créé avec succès.',
 			});
 			setTimeout(() => {
-				history.back();
-			})
+				location.replace("/")
+			}, 1000)
 		} catch (e) {
 			toast({
 				title: 'Erreur',
