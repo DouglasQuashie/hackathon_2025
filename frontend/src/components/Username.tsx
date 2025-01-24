@@ -5,9 +5,8 @@ import { Input } from './ui/input.tsx';
 import { Button } from './ui/button.tsx';
 import Chat from './Chat.tsx';
 
-export default function Username({ setUsername, username }: {
+export default function Username({ setUsername }: {
 	setUsername: (username: string) => void,
-	username: string
 }) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [localUsername, setLocalUsername] = useState('');
@@ -23,7 +22,7 @@ export default function Username({ setUsername, username }: {
 	};
 
 	if (isLoggedIn) {
-		return <Chat username={username}/>;
+		return <Chat />;
 	}
 
 	return (

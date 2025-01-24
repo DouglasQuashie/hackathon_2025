@@ -15,7 +15,7 @@ export default function Home() {
 					<Map/>
 				</div>
 				<div className="w-1/3 h-full border-l">
-					{username ? <Chat username={username} /> : <Username setUsername={setUsername} username={username}/>}
+					{username ? <Chat /> : <Username setUsername={setUsername} />}
 				</div>
 			</div>
 		</div>

@@ -4,8 +4,17 @@ import type { Chat } from '../lib/chat/interfaces/Chat.ts';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 import { getChatByZone } from '../services/Api.ts';
+import { useNavigate } from 'react-router';
 
-export default function Chat({username}: {username: string}) {
+export default function Chat() {
+    const username = localStorage.getItem('username')
+    const navigate = useNavigate();
+
+    if (!username) {
+        navigate("/")
+        return;
+    }
+
     const zone = localStorage.getItem("zone")!;
 
     const [content, setContent] = useState<string>('');
