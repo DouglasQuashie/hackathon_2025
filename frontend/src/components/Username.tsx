@@ -1,29 +1,49 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
+
+import Home from './Home.tsx';
+import { Label } from './ui/label.tsx';
+import { Input } from './ui/input.tsx';
+import { Button } from './ui/button.tsx';
+import Chat from './Chat.tsx';
 
 export default function Username() {
-	const [user, setUser] = useState('');
+	const [username, setUsername] = useState("")
+	const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		if (!user) {
-			alert('Veuillez entrer un nom d\'utilisateur');
-			return;
+	const handleSubmit = (e: FormEvent) => {
+		e.preventDefault()
+		if (username.trim()) {
+			localStorage.setItem('username', username)
+			setIsLoggedIn(true)
 		}
+	}
 
-		localStorage.setItem("username", user);
-		location.reload();
-	};
-
+	if (isLoggedIn) {
+		return <Chat />
+	}
 
 	return (
-		<div className="flex flex-col h-screen">
-			<div className="flex overflow-hidden">
-				<form className="flex gap-2" onSubmit={handleSubmit}>
-					<input className="border-2 border-white" value={user} onChange={(e) => setUser(e.target.value)} type="text"/>
-					<button type="submit">Me connecter avec ce nom d'utilisateur</button>
+		<div className="flex min-h-svh items-center justify-center">
+			<div className="w-full max-w-sm space-y-4">
+				<h1 className="text-2xl font-bold text-center">Connexion</h1>
+				<form onSubmit={handleSubmit} className="space-y-4">
+					<div className="space-y-2">
+						<Label htmlFor="username">Nom d'utilisateur</Label>
+						<Input
+							id="username"
+							type="text"
+							placeholder="Entrez votre nom d'utilisateur"
+							value={username}
+							onChange={(e) => setUsername(e.target.value)}
+							required
+						/>
+					</div>
+					<Button type="submit" className="w-full">
+						Me connecter avec ce nom d'utilisateur
+					</Button>
 				</form>
 			</div>
 		</div>
-	);
+	)
 }
+
