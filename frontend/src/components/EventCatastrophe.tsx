@@ -73,6 +73,17 @@ const EventForm: React.FC<EventFormProps> = ({ onEventCreated }) => {
 
 	return (
 		<div className="container mx-auto px-4 py-8">
+			<nav className="text-sm mb-4">
+				<ol className="list-reset flex text-gray-500">
+					<li>
+						<a href="/" className="text-blue-600 hover:underline">Accueil</a>
+					</li>
+					<li>
+						<span className="mx-2">/</span>
+					</li>
+					<li>Ajouter une catastrophe</li>
+				</ol>
+			</nav>
 			<h1 className="text-3xl font-bold mb-8">Ajouter une catastrophe</h1>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
