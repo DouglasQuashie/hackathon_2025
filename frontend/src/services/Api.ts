@@ -27,9 +27,9 @@ export const getZones = async (): Promise<ApiResponse<ZoneItem[]>> => {
     }
 };
 
-export const getEvents = async (type: string): Promise<ApiResponse<Event[]>> => {
+export const getEvents = async (type: string, zone: string): Promise<ApiResponse<Event[]>> => {
     try {
-        const response = await axios.get(`${API_URL}/event?type=${type}`);
+        const response = await axios.get(`${API_URL}/event?type=${type}&zone=${zone}`);
         return response.data;
     } catch (error) {
         console.error('Error fetching event data:', error);

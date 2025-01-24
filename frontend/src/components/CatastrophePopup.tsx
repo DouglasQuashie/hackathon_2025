@@ -11,7 +11,7 @@ interface Catastrophe {
   createdAt: string;
 }
 
-export const CatastrophePopup: React.FC = () => {
+export const CatastrophePopup: React.FC<{zone: string}> = ({zone}) => {
 	const [catastrophes, setCatastrophes] = useState<Catastrophe[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 
@@ -19,7 +19,7 @@ export const CatastrophePopup: React.FC = () => {
 		// Appel à l'API pour récupérer les catastrophes
 		const fetchCatastrophes = async () => {
 			try {
-				const events = await getEvents("catastrophe"); // Appel de la fonction getEvents
+				const events = await getEvents("catastrophe", zone); // Appel de la fonction getEvents
 				setCatastrophes(events.data); // Mise à jour de l'état
 			} catch (error) {
 				console.error('Erreur lors de la récupération des catastrophes :', error);

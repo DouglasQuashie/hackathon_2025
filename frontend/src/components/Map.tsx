@@ -57,7 +57,7 @@ export default function Map() {
 					<Popup>
 						<p>{zone.name}</p>
 						<div className="flex flex-col gap-2">
-							<CatastrophePopup zone={zone.id} />
+							<CatastrophePopup zone={zone.name} />
 							<ActivityPopup />
 						</div>
 					</Popup>
