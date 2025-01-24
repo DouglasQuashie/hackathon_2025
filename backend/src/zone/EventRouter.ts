@@ -10,7 +10,7 @@ const EventRouter = new Hono();
 
 EventRouter.get(
 	'/',
-	(c, next) => CheckBodyMiddleware({ type: c.req.query('type'), zone:  c.req.query('zone') }, next, getEventsDto),
+	(c, next) => CheckBodyMiddleware({ type: c.req.query('type'), zoneId:  c.req.query('zone') }, next, getEventsDto),
 	EventController.getEvents
 )
 
