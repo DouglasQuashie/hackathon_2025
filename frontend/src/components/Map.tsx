@@ -55,9 +55,11 @@ export default function Map() {
 					fillOpacity={0.5}
 				>
 					<Popup>
-						<CatastrophePopup catastrophes={[]} />
-						<br/>
-						<ActivityPopup activities={[]} />
+						<p>{zone.name}</p>
+						<div className="flex flex-col gap-2">
+						<CatastrophePopup catastrophes={[]}/>
+						<ActivityPopup activities={[]}/>
+						</div>
 					</Popup>
 				</Polygon>
 			))}
