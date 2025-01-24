@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Popup, Polygon } from 'react-leaflet';
 import { LatLngExpression } from 'leaflet';
 import { ZoneItem } from '../lib/chat/interfaces/Zone.ts';
-import { getZones } from '../services/Api.tsx';
+import { getZones } from '../services/Api.ts';
 
 export default function Map() {
 	const [zonesData, setZones] = useState<ZoneItem[]>([]);

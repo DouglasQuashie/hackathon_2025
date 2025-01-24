@@ -1,4 +1,4 @@
-import { getZones } from '../../services/Api.tsx';
+import { getZones } from '../../services/Api.ts';
 import { isPointInHexagon } from './Math.ts';
 
 

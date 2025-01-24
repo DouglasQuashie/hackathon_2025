@@ -4,7 +4,7 @@ import type { Chat } from '../lib/chat/interfaces/Chat.ts';
 import { Navigate } from 'react-router';
 import { FormEvent, useEffect, useState } from 'react';
 import { v4 } from 'uuid';
-import { getChatByZone } from '../services/Api.tsx';
+import { getChatByZone } from '../services/Api.ts';
 
 export default function Chat() {
     const zone = localStorage.getItem("zone");
