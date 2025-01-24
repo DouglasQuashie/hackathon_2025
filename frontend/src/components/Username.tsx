@@ -42,7 +42,7 @@ export default function Username({ setUsername, username }: {
 							required
 						/>
 					</div>
-					<Button type="submit" className="w-full">
+					<Button type="submit" className="w-full cursor-pointer">
 						Me connecter avec ce nom d'utilisateur
 					</Button>
 				</form>
