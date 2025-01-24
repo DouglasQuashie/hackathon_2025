@@ -112,10 +112,10 @@ const EventForm: React.FC<EventFormProps> = ({ onEventCreated }) => {
 											<SelectValue placeholder="Sélectionnez une zone"/>
 										</SelectTrigger>
 									</FormControl>
-									<SelectContent>
+									<SelectContent className='bg-white'>
 										{zones.map((zone) => (
-											<SelectItem key={zone.id} value={zone.id}>
-												Zone {zone.name}
+											<SelectItem key={zone.id} value={zone.id} className='cursor-pointer hover:bg-gray-200'>
+												{zone.name}
 											</SelectItem>
 										))}
 									</SelectContent>
@@ -137,7 +137,7 @@ const EventForm: React.FC<EventFormProps> = ({ onEventCreated }) => {
 							</FormItem>
 						)}
 					/>
-					<Button type="submit">Créer l'activité</Button>
+					<Button type="submit" className='cursor-pointer hover:bg-gray-200'>Créer l'activité</Button>
 				</form>
 			</Form>
 		</div>

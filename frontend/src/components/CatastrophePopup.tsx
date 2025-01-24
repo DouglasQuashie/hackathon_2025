@@ -19,7 +19,7 @@ export const CatastrophePopup: React.FC<CatastrophePopupProps> = ({ catastrophes
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button>Voir les catastrophes</Button>
+				<Button className='cursor-pointer hover:bg-gray-200'>Voir les catastrophes</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px] z-[1000] bg-white">
 				<DialogHeader>

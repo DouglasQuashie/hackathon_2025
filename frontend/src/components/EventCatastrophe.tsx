@@ -99,11 +99,11 @@ const EventForm: React.FC<EventFormProps> = ({ onEventCreated }) => {
 											<SelectValue placeholder="Titre de l'événement"/>
 										</SelectTrigger>
 									</FormControl>
-									<SelectContent>
-										<SelectItem key={0} value={'Innodation'}>
+									<SelectContent className='bg-white '>
+										<SelectItem key={0} value={'Innodation'} className='cursor-pointer hover:bg-gray-200'>
 											Innodation
 										</SelectItem>
-										<SelectItem key={1} value={'Seisme'}>
+										<SelectItem key={1} value={'Seisme'} className='cursor-pointer hover:bg-gray-200'>
 											Seisme
 										</SelectItem>
 									</SelectContent>
@@ -126,10 +126,10 @@ const EventForm: React.FC<EventFormProps> = ({ onEventCreated }) => {
 											<SelectValue placeholder="Sélectionnez une zone"/>
 										</SelectTrigger>
 									</FormControl>
-									<SelectContent>
+									<SelectContent className='bg-white'>
 										{zones.map((zone) => (
-											<SelectItem key={zone.id} value={zone.id}>
-												Zone {zone.name}
+											<SelectItem key={zone.id} value={zone.id} className='cursor-pointer hover:bg-gray-200'>
+												{zone.name}
 											</SelectItem>
 										))}
 									</SelectContent>
@@ -151,7 +151,7 @@ const EventForm: React.FC<EventFormProps> = ({ onEventCreated }) => {
 							</FormItem>
 						)}
 					/>
-					<Button type="submit">Créer le catastrophe</Button>
+					<Button type="submit" className='cursor-pointer hover:bg-gray-200'>Créer le catastrophe</Button>
 				</form>
 			</Form>
 		</div>
