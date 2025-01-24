@@ -3,8 +3,11 @@ import 'tailwindcss';
 import { useEffect } from 'react';
 import Home from './components/Home.tsx';
 import { getZone } from './lib/common/Zone.ts';
+import Username from './components/Username.tsx';
 
 function App() {
+
+	const username = localStorage.getItem('username');
 
 	navigator.geolocation.getCurrentPosition(
 		(position) => {
@@ -28,7 +31,7 @@ function App() {
 		init();
 	}, []);
 
-	return <Home />;
+	return username ? <Home /> : <Username />;
 }
 
 export default App;
