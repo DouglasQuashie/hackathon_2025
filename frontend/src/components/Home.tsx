@@ -7,7 +7,7 @@ export default function Home() {
     const [user] = useState({ name: "John Doe" })
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="container flex flex-col h-screen p-8">
         <Navbar user={user} />
         <div className="flex flex-1 overflow-hidden">
             <div className="w-2/3 h-full">
