@@ -8,9 +8,9 @@ export default function Home() {
 	const [username, setUsername] = useState(localStorage.getItem('username') ?? '');
 
 	return (
-		<div className="container flex flex-col h-screen p-8">
+		<div className="flex flex-col h-screen p-8">
 			<Navbar username={username}/>
-			<div className="flex flex-1 overflow-hidden">
+			<div className="flex flex-1 overflow-hidden shadow border rounded-lg">
 				<div className="w-2/3 h-full">
 					<Map/>
 				</div>

@@ -12,12 +12,15 @@ export default function Username({ setUsername }: {
 	const [localUsername, setLocalUsername] = useState('');
 
 	const handleSubmit = (e: FormEvent) => {
-		console.log("submits");
 		e.preventDefault();
 		if (localUsername.trim()) {
-			localStorage.setItem('username', localUsername);
-			setUsername(localUsername);
-			setIsLoggedIn(true);
+			if(localStorage.getItem('coordinates') !== null) {
+				localStorage.setItem('username', localUsername);
+				setUsername(localUsername);
+				setIsLoggedIn(true);
+			} else {
+				alert('Veuillez activer la géolocalisation pour continuer');
+			}
 		}
 	};
 
@@ -26,7 +29,7 @@ export default function Username({ setUsername }: {
 	}
 
 	return (
-		<div className="flex min-h-svh items-center justify-center">
+		<div className="flex min-h-svh justify-center p-4">
 			<div className="w-full max-w-sm space-y-4">
 				<h1 className="text-2xl font-bold text-center">Connexion</h1>
 				<form onSubmit={handleSubmit} className="space-y-4">
@@ -41,7 +44,7 @@ export default function Username({ setUsername }: {
 							required
 						/>
 					</div>
-					<Button type="submit" className="w-full cursor-pointer">
+					<Button type="submit" className="w-full cursor-pointer hover:bg-gray-200 border hover:border-gray-400">
 						Me connecter avec ce nom d'utilisateur
 					</Button>
 				</form>

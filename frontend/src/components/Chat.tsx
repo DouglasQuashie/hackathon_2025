@@ -68,7 +68,7 @@ export default function Chat() {
     };
 
     return (
-        <div className="flex flex-col h-full border border-gray-300">
+        <div className="flex flex-col h-full">
             <div className="flex p-4">
                 <h1 className='text-2xl'>Chat</h1>
             </div>

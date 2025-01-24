@@ -8,14 +8,18 @@ export default function Navbar({ username }: { username: string }) {
 	};
 
 	return (
-		<nav className="flex items-center justify-between py-4 bg-primary text-primary-foreground">
-			<h1 className="text-3xl font-bold">Alertes</h1>
-				{username &&
-					<div className="flex items-center space-x-4">
-						<span className="text-xl">{username}</span>
-						<Button onClick={handleDisconnect} className='cursor-pointer'>Se déconnecter</Button>
-					</div>
-				}
+		<nav className="flex items-center justify-between py-4">
+            <div className='flex items-center space-x-4'>
+                <h1 className="text-3xl font-bold me-10">Alertes</h1>
+                <Button className='cursor-pointer hover:text-white hover:bg-red-700'>Ajouter un sinistre</Button>
+                <Button className='cursor-pointer hover:bg-gray-200 text-sm'>Créer une activité</Button>
+            </div>
+            {username &&
+                <div className="flex items-center space-x-4">
+                    <span className="text-xl">{username}</span>
+                    <Button onClick={handleDisconnect} className='cursor-pointer hover:bg-gray-200'>Se déconnecter</Button>
+                </div>
+            }
 
 		</nav>
 	);
