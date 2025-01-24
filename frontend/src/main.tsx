@@ -13,7 +13,8 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/event" element={<EventForm onEventCreated={onEventCreated} />} />
+        <Route path="/activity" element={<EventForm onEventCreated={onEventCreated} />} />
+	      <Route path="/catastrophe" element={<EventForm onEventCreated={onEventCreated} />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
