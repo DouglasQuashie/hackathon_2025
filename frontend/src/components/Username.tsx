@@ -1,6 +1,5 @@
 import { FormEvent, useState } from 'react';
 
-import Home from './Home.tsx';
 import { Label } from './ui/label.tsx';
 import { Input } from './ui/input.tsx';
 import { Button } from './ui/button.tsx';
