@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Button } from './ui/button';
 import { ScrollArea } from './ui/scroll-area.tsx';
@@ -16,7 +16,27 @@ interface ActivityPopupProps {
 	activities: Activity[];
 }
 
-export const ActivityPopup: React.FC<ActivityPopupProps> = ({ activities }) => {
+export const ActivityPopup: React.FC = () => {
+
+	const [activities, setActivities] = useState<Activity[]>([]);
+	const [loading, setLoading] = useState<boolean>(true);
+
+	useEffect(() => {
+		// Appel à l'API pour récupérer les catastrophes
+		const fetchActivities = async () => {
+			try {
+				const events = await getEvents("activity"); // Appel de la fonction getEvents
+				setActivities(events.data); // Mise à jour de l'état
+			} catch (error) {
+				console.error('Erreur lors de la récupération des catastrophes :', error);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchActivities();
+	}, []);
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
