@@ -19,33 +19,23 @@ model Chat {
 }
 
 model Zone {
-  id         String      @id @default(uuid())
-  name       String
-  edge1      String
-  edge2      String
-  edge3      String
-  edge4      String
-  edge5      String
-  zoneEvents ZoneEvent[]
-}
-
-model ZoneEvent {
-  idZone String
-  zone   Zone   @relation(fields: [idZone], references: [id])
-
-  idEvent String
-  event   Event  @relation(fields: [idEvent], references: [id])
-
-  @@id([idZone, idEvent])
+  id     String  @id @default(uuid())
+  name   String
+  edge1  String
+  edge2  String
+  edge3  String
+  edge4  String
+  edge5  String
+  events Event[]
 }
 
 model Event {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
 
-  title      String
-  status     String
-  content    String
-  type       String
-  zoneEvents ZoneEvent[]
+  title   String
+  content String
+  type    String
+  zone    Zone   @relation(fields: [zoneId], references: [id])
+  zoneId  String
 }

@@ -15,5 +15,6 @@ type Coordinate= {
 
 export type ZoneItem = {
 	name: string;
+	id: string;
 	coordinates: Coordinate[];
 }

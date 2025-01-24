@@ -7,6 +7,7 @@ import ZoneRouter from '@/zone/ZoneRouter';
 import { ContentfulStatusCode } from 'hono/utils/http-status';
 
 import io from '@/ws.router';
+import EventRouter from '@/zone/EventRouter';
 
 const app = new Hono();
 
@@ -19,6 +20,7 @@ app.get("/", (c) => c.text("Hello, world!"))
 
 app.route('/chat', ChatRouter);
 app.route('/zone', ZoneRouter);
+app.route('/event', EventRouter);
 
 app.onError((handle, c) => {
 	const cause = handle.cause as { status: ContentfulStatusCode; data: unknown };

@@ -33,6 +33,7 @@ export const GetZonesUseCase: UseCase<Input, Output> = (deps) => {
 
 					return {
 						name: zone.name,
+						id: zone.id,
 						coordinates
 					}
 				});

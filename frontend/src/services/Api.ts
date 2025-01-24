@@ -2,8 +2,8 @@ import axios from 'axios';
 import { Chat } from '../lib/chat/interfaces/Chat.ts';
 import { ApiResponse } from '../lib/common/ApiResponse.ts';
 import { ZoneItem } from '../lib/chat/interfaces/Zone.ts';
+import { API_URL } from '../lib/common/constant.ts';
 
-const API_URL = 'http://localhost:3000';
 
 export const getChatByZone = async (zone: string): Promise<ApiResponse<Chat[]>> => {
     try {

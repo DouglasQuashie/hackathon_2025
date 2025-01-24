@@ -1,6 +1,7 @@
 import { ZodError, ZodSchema } from "zod";
 import { Socket } from "socket.io";
 import { NextFunction } from '@/common/interfaces/NextFunction';
+import prisma from '@/common/db';
 
 
 type MiddlewareFunction = {
@@ -29,6 +30,7 @@ export const WsMiddleware = (socket: Socket, data: unknown, schema: ZodSchema, m
 
 export const CheckBodyMiddleware = async (body: unknown, next: NextFunction, schema: ZodSchema, middleware = DefaultMiddleware) => {
 	try {
+		console.log(body);
 		middleware(body, schema)
 		await next();
 	} catch (error) {
