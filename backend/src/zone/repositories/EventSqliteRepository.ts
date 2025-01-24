@@ -5,13 +5,16 @@ import { Event } from '@/zone/interfaces/Event';
 
 export const EventSqliteRepository = (): IEventRepositoryAddZone & IEventRepositoryGetEvents => {
 	return {
-		getEvents(type): Promise<Event[]> {
+		getEvents({ type, zone }): Promise<Event[]> {
 			const sevenDaysAgo = new Date();
 			sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
 			return prisma.event.findMany({
 				where: {
 					type,
+					zone: {
+						name: zone,
+					},
 					createdAt: {
 						gte: sevenDaysAgo, // Récupère les événements créés après (ou exactement) il y a 7 jours
 					},

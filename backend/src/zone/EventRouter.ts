@@ -4,14 +4,15 @@ import { CheckBodyMiddleware } from '@/common/middlewares/middleware';
 import z from 'zod';
 import EventController from '@/zone/controllers/EventController';
 import { addEventDto } from '@/zone/interfaces/dto/AddEventDto';
+import { getEventsDto } from '@/zone/interfaces/dto/GetEventsDto';
 
 const EventRouter = new Hono();
 
 EventRouter.get(
 	'/',
-	(c, next) => CheckBodyMiddleware(c.req.query('type'), next, z.string({ message: 'Vous devez fournir un type.' })),
+	(c, next) => CheckBodyMiddleware({ type: c.req.query('type'), zone:  c.req.query('zone') }, next, getEventsDto),
 	EventController.getEvents
-);
+)
 
 
 EventRouter.post(
